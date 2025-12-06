@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures Simulation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">🌙</button>
+
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <header class="landing-header">
+            <h1>Data Structures Simulation</h1>
+            <p>Select a data structure to visualize</p>
+        </header>
+        <div class="ds-grid">
+            <div class="ds-card" onclick="navigateTo('stack')">
+                <h2>Stack</h2>
+                <p>LIFO (Last In, First Out)</p>
+            </div>
+            <div class="ds-card" onclick="navigateTo('queue')">
+                <h2>Queue</h2>
+                <p>FIFO (First In, First Out)</p>
+            </div>
+            <div class="ds-card" onclick="navigateTo('sll')">
+                <h2>Singly Linked List</h2>
+                <p>Nodes with single pointer</p>
+            </div>
+            <div class="ds-card" onclick="navigateTo('dll')">
+                <h2>Doubly Linked List</h2>
+                <p>Nodes with two pointers</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simulation Pages Container -->
+    <div id="simulation-container" class="page">
+        <button id="back-btn" onclick="navigateTo('landing')">← Back</button>
+
+        <!-- SVG Layer for Arrows -->
+        <svg id="svg-layer"></svg>
+
+        <!-- Stack Section -->
+        <section id="stack" class="ds-section">
+            <h2>Stack Visualization</h2>
+            <div class="visualization-area">
+                <div class="view-panel main-view">
+                    <div id="stack-visual" class="visual-box stack-books-container"></div>
+                </div>
+                <div class="view-panel array-view">
+                    <h3>Array Representation</h3>
+                    <div id="stack-array-visual" class="visual-box array-row"></div>
+                </div>
+            </div>
+            <div class="controls-bottom">
+                <div class="control-group">
+                    <input type="text" id="stack-input" placeholder="Value">
+                    <button onclick="stack.push()">Push</button>
+                    <button onclick="stack.pop()">Pop</button>
+                    <button onclick="stack.peek()">Peek</button>
+                    <button onclick="stack.clear()">Clear</button>
+                </div>
+                <div class="status-panel">
+                    <p>Top: <span id="stack-top-val">None</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Queue Section -->
+        <section id="queue" class="ds-section">
+            <h2>Queue Visualization</h2>
+            <div class="visualization-area">
+                <div class="view-panel main-view">
+                    <div id="queue-visual" class="visual-box queue-people-container"></div>
+                </div>
+                <div class="view-panel array-view">
+                    <h3>Array Representation</h3>
+                    <div id="queue-array-visual" class="visual-box array-row"></div>
+                </div>
+            </div>
+            <div class="controls-bottom">
+                <div class="control-group">
+                    <input type="text" id="queue-input" placeholder="Value">
+                    <button onclick="queue.enqueue()">Enqueue</button>
+                    <button onclick="queue.dequeue()">Dequeue</button>
+                    <button onclick="queue.peek()">Peek</button>
+                    <button onclick="queue.clear()">Clear</button>
+                </div>
+                <div class="status-panel">
+                    <p>Front: <span id="queue-front-val">None</span> | Rear: <span id="queue-rear-val">None</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Singly Linked List Section -->
+        <section id="sll" class="ds-section">
+            <h2>Singly Linked List</h2>
+            <div class="visualization-area full-screen-canvas" id="sll-canvas">
+                <!-- Nodes will be absolute positioned here -->
+            </div>
+            <div class="controls-bottom">
+                <div class="control-group">
+                    <input type="text" id="sll-input" placeholder="Value">
+                    <input type="number" id="sll-index" placeholder="Index">
+                    <button onclick="sll.add()">Add</button>
+                    <button onclick="sll.insert()">Insert at Index</button>
+                    <button onclick="sll.remove()">Remove Index</button>
+                    <button onclick="sll.clear()">Clear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doubly Linked List Section -->
+        <section id="dll" class="ds-section">
+            <h2>Doubly Linked List</h2>
+            <div class="visualization-area full-screen-canvas" id="dll-canvas">
+                <!-- Nodes will be absolute positioned here -->
+            </div>
+            <div class="controls-bottom">
+                <div class="control-group">
+                    <input type="text" id="dll-input" placeholder="Value">
+                    <input type="number" id="dll-index" placeholder="Index">
+                    <button onclick="dll.add()">Add</button>
+                    <button onclick="dll.insert()">Insert at Index</button>
+                    <button onclick="dll.remove()">Remove Index</button>
+                    <button onclick="dll.clear()">Clear</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Peek Modal -->
+    <div id="peek-modal" class="modal">
+        <div class="modal-content speech-bubble">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <p id="peek-text"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
